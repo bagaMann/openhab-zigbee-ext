@@ -4,13 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.openhab.addons</groupId>
-    <artifactId>org.openhab.addons.reactor</artifactId>
-    <version>5.2.0</version>
-    <relativePath/>
-  </parent>
-
   <groupId>io.github.bagamann.openhab</groupId>
   <artifactId>org.openhab.binding.zigbee.ext</artifactId>
   <version>0.1.0-SNAPSHOT</version>
@@ -21,8 +14,12 @@
 
   <properties>
     <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <zsmartsystems.version>1.4.16.1</zsmartsystems.version>
     <zigbee.binding.version>5.2.0</zigbee.binding.version>
+    <bnd.version>7.1.0</bnd.version>
+    <maven.compiler.version>3.13.0</maven.compiler.version>
+    <maven.jar.version>3.4.2</maven.jar.version>
   </properties>
 
   <dependencies>
@@ -50,8 +47,17 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.version}</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>biz.aQute.bnd</groupId>
         <artifactId>bnd-maven-plugin</artifactId>
+        <version>${bnd.version}</version>
         <executions>
           <execution>
             <goals>
@@ -76,6 +82,7 @@ Import-Package: \
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>${maven.jar.version}</version>
         <configuration>
           <archive>
             <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
