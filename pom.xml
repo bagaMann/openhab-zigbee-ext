@@ -18,7 +18,6 @@
     <openhab.core.version>5.2.0</openhab.core.version>
     <zigbee.binding.version>5.2.0</zigbee.binding.version>
     <zsmartsystems.version>1.4.16.1</zsmartsystems.version>
-    <osgi.ds.annotations.version>1.5.1</osgi.ds.annotations.version>
     <bnd.version>7.3.0</bnd.version>
     <maven.compiler.version>3.13.0</maven.compiler.version>
     <maven.jar.version>3.4.2</maven.jar.version>
@@ -41,12 +40,6 @@
       <groupId>com.zsmartsystems.zigbee</groupId>
       <artifactId>com.zsmartsystems.zigbee</artifactId>
       <version>${zsmartsystems.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.service.component.annotations</artifactId>
-      <version>${osgi.ds.annotations.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -84,6 +77,7 @@
 Bundle-SymbolicName: org.openhab.binding.zigbee.ext
 Bundle-Name: openHAB Zigbee Ext
 Bundle-Version: ${version}
+Service-Component: OSGI-INF/external-channel-converter-provider.xml
 Private-Package: io.github.bagamann.openhab.zigbee.ext.*
 Import-Package: \
   org.openhab.binding.zigbee.converter;version="[5.2,5.3)",\
