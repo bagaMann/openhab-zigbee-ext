@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0"
+        name="io.github.bagamann.openhab.zigbee.ext.ExternalChannelConverterProvider"
+        immediate="true">
+    <implementation class="io.github.bagamann.openhab.zigbee.ext.ExternalChannelConverterProvider"/>
+    <service>
+        <provide interface="org.openhab.binding.zigbee.converter.ZigBeeChannelConverterProvider"/>
+    </service>
+</scr:component>
