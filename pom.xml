@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.openhab.addons</groupId>
+    <artifactId>org.openhab.addons.reactor</artifactId>
+    <version>5.2.0</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>io.github.bagamann.openhab</groupId>
+  <artifactId>org.openhab.binding.zigbee.ext</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>openHAB Zigbee Ext</name>
+  <description>External Zigbee channel converter provider for openHAB</description>
+
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <zsmartsystems.version>1.4.16.1</zsmartsystems.version>
+    <zigbee.binding.version>5.2.0</zigbee.binding.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.openhab.addons.bundles</groupId>
+      <artifactId>org.openhab.binding.zigbee</artifactId>
+      <version>${zigbee.binding.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.zsmartsystems.zigbee</groupId>
+      <artifactId>com.zsmartsystems.zigbee</artifactId>
+      <version>${zsmartsystems.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>openhab-release</id>
+      <url>https://openhab.jfrog.io/openhab/libs-release</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>bnd-process</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <bnd><![CDATA[
+Bundle-SymbolicName: org.openhab.binding.zigbee.ext
+Bundle-Name: openHAB Zigbee Ext
+Bundle-Version: ${version}
+Private-Package: io.github.bagamann.openhab.zigbee.ext.*
+Import-Package: \
+  org.openhab.binding.zigbee.converter;version="[5.2,5.3)",\
+  org.openhab.core.thing.type,\
+  org.osgi.service.component.annotations,\
+  *
+          ]]></bnd>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
